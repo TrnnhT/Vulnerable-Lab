@@ -71,6 +71,19 @@ function startLayout($pageTitle = "FakeBook") {
                 box-shadow: 0 2px 8px rgba(0,0,0,0.1);
                 border-left: 6px solid #1877f2;
             }
+            button {
+                background-color: #1877f2;
+                color: white;
+                padding: 6px 12px;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+                margin-left: 8px;
+            }
+
+            button:hover {
+                background-color: #0056b3;
+}
 
         </style>
     </head>

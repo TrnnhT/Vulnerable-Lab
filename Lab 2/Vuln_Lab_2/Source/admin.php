@@ -12,30 +12,32 @@ $previewResult = '';
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['image_url'])) {
     $url = $_POST['image_url'];
 
+    // Intentionally unsafe for lab purposes
     $previewResult = @file_get_contents($url);
-    //http://127.0.0.1/important_admin.php
-
 }
 
-startLayout("Admin Panel");
+startLayout("Admin Panel - Lab 2");
 ?>
 
-<h2>Welcome, Admin</h2>
+<div style="background: white; padding: 25px 30px; border-radius: 12px; box-shadow: 0 0 12px rgba(0,0,0,0.1); max-width: 600px; width: 100%;">
+    <h2 style="color: #1877f2; margin-top: 0;">Welcome, Admin</h2>
 
-<h3> Image Preview Tool</h3>
-<form method="POST">
-    <label for="image_url">Enter an image URL to preview:</label><br>
-    <input type="text" name="image_url" id="image_url" style="width: 400px;">
-    <button type="submit">Preview</button>
-</form>
+    <h3 style="margin-top: 20px;">Image Preview Tool</h3>
 
-<?php if ($previewResult): ?>
-    <div style="margin-top: 20px;">
-        <h4>Preview Result:</h4>
-        <pre style="background: #f0f0f0; padding: 10px; border-radius: 4px;">
+    <form method="POST" style="margin-top: 15px;">
+        <label for="image_url" style="font-weight: bold;">Enter an image URL to preview:</label><br>
+        <input type="text" name="image_url" id="image_url" placeholder="e.g. http://127.0.0.1/test.jpg" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px; margin-top: 10px;">
+        <button type="submit" style="margin-top: 12px; background-color: #28a745; color: white; padding: 8px 16px; border: none; border-radius: 6px; cursor: pointer;">🔍 Preview</button>
+    </form>
+
+    <?php if ($previewResult): ?>
+        <div style="margin-top: 25px;">
+            <h4 style="color: #333;">Preview Result:</h4>
+            <pre style="background: #f6f8fa; padding: 15px; border-left: 4px solid #1877f2; border-radius: 6px; max-height: 300px; overflow: auto;">
 <?= htmlspecialchars($previewResult) ?>
-        </pre>
-    </div>
-<?php endif; ?>
+            </pre>
+        </div>
+    <?php endif; ?>
+</div>
 
 <?php endLayout(); ?>
